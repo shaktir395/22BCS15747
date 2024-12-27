@@ -1,0 +1,14 @@
+// AI model for generating actionable insights based on food waste levels
+function generateRecommendations(wasteLevel) {
+    if (wasteLevel > 70) {
+        return "High waste detected! Consider reducing production or improving storage.";
+    } else if (wasteLevel > 40) {
+        return "Moderate waste level. Optimize transportation and distribution.";
+    } else {
+        return "Low waste level. Continue with current operations.";
+    }
+}
+
+// Example usage
+const currentWasteLevel = 72; // Example waste level
+console.log(generateRecommendations(currentWasteLevel));

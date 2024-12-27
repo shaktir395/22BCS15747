@@ -1,0 +1,13 @@
+// AI model to predict sources of food wastage (simplified approach)
+const wasteSources = [
+    { source: 'Overproduction', wastagePercentage: 45 },
+    { source: 'Storage Issues', wastagePercentage: 30 },
+    { source: 'Transportation Delays', wastagePercentage: 25 }
+];
+
+function predictWastageReduction(data) {
+    let predictedSource = wasteSources.sort((a, b) => b.wastagePercentage - a.wastagePercentage)[0];
+    return `The main source of waste is: ${predictedSource.source}. To reduce wastage, focus on improving this area.`;
+}
+
+console.log(predictWastageReduction(wasteSources));

@@ -1,0 +1,21 @@
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+mongoose.connect('mongodb://localhost/foodWasteDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const sustainabilitySchema = new Schema({
+    action: String,
+    date: { type: Date, default: Date.now },
+    effectiveness: Number // 0-100% effectiveness
+});
+
+const SustainabilityAction = mongoose.model('SustainabilityAction', sustainabilitySchema);
+
+// Log a sustainability action
+const logSustainabilityAction = async (action, effectiveness) => {
+    const newAction = new SustainabilityAction({ action, effectiveness });
+    await newAction.save();
+    console.log('Sustainability action logged:', newAction);
+};
+
+logSustainabilityAction('Improved storage conditions', 85);

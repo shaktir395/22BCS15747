@@ -1,0 +1,28 @@
+// App.js (React Component to display live tracking data)
+import React, { useState, useEffect } from 'react';
+import socketIOClient from 'socket.io-client';
+
+const App = () => {
+    const [foodWasteLevel, setFoodWasteLevel] = useState(0);
+
+    useEffect(() => {
+        const socket = socketIOClient('http://localhost:3001');
+        socket.on('updateWasteLevel', (data) => {
+            setFoodWasteLevel(data.level);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
+
+    return (
+        <div>
+            <h1>Food Waste Monitoring</h1>
+            <p>Current Food Waste Level: {foodWasteLevel.toFixed(2)}%</p>
+        </div>
+    );
+};
+
+export default App;
+;

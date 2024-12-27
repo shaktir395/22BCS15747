@@ -1,0 +1,13 @@
+// Optimizing operations based on food waste trends
+function optimizeOperations(wasteLevel) {
+    if (wasteLevel > 50) {
+        return "Optimize production schedule and reduce overproduction.";
+    } else if (wasteLevel > 30) {
+        return "Improve supply chain efficiency and reduce delays.";
+    } else {
+        return "Operations are optimized. Continue monitoring.";
+    }
+}
+
+const wasteLevelExample = 55;
+console.log(optimizeOperations(wasteLevelExample));

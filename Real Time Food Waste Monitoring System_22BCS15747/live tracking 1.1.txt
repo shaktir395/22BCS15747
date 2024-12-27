@@ -1,0 +1,23 @@
+// server.js (Node.js with Express for handling live data)
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+// Simulating IoT data received from sensors
+let foodWasteData = { level: 0 }; // Example: food waste level (0-100%)
+
+app.use(express.static('public'));
+
+io.on('connection', (socket) => {
+    console.log('A user connected');
+    setInterval(() => {
+        // Simulating food waste level changes
+        foodWasteData.level = Math.random() * 100; // Random food waste level
+        socket.emit('updateWasteLevel', foodWasteData); // Emit real-time data to the client
+    }, 5000); // Update every 5 seconds
+});
+
+http.listen(3001, () => {
+    console.log('Server running on port 3001');
+});
